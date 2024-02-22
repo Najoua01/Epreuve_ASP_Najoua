@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>DB_Epreuve</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{9439f7d3-9146-446e-874f-bc4565d39668}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>DB_Epreuve</RootNamespace>
+    <AssemblyName>DB_Epreuve</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Table" />
+    <Folder Include="StoredProcedure" />
+    <Folder Include="StoredProcedure\Categorie" />
+    <Folder Include="StoredProcedure\Commande" />
+    <Folder Include="StoredProcedure\Media" />
+    <Folder Include="StoredProcedure\Panier" />
+    <Folder Include="StoredProcedure\Produit" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Table\Categorie.sql" />
+    <Build Include="Table\Commande.sql" />
+    <Build Include="Table\Media.sql" />
+    <Build Include="Table\Panier.sql" />
+    <Build Include="Table\Produit.sql" />
+    <Build Include="StoredProcedure\Panier\SP_Panier_Delete.sql" />
+    <Build Include="StoredProcedure\Panier\SP_Panier_GetAll.sql" />
+    <Build Include="StoredProcedure\Panier\SP_Panier_GetBy.sql" />
+    <Build Include="StoredProcedure\Panier\SP_Panier_Insert.sql" />
+    <Build Include="StoredProcedure\Panier\SP_Panier_Update.sql" />
+    <Build Include="StoredProcedure\Produit\SP_Produit_Delete.sql" />
+    <Build Include="StoredProcedure\Produit\SP_Produit_GetAll.sql" />
+    <Build Include="StoredProcedure\Produit\SP_Produit_GetBy.sql" />
+    <Build Include="StoredProcedure\Produit\SP_Produit_Insert.sql" />
+    <Build Include="StoredProcedure\Produit\SP_Produit_Update.sql" />
+    <Build Include="StoredProcedure\Media\SP_Media_Delete.sql" />
+    <Build Include="StoredProcedure\Media\SP_Media_GetAll.sql" />
+    <Build Include="StoredProcedure\Media\SP_Media_GetBy.sql" />
+    <Build Include="StoredProcedure\Media\SP_Media_Insert.sql" />
+    <Build Include="StoredProcedure\Media\SP_Media_Update.sql" />
+    <Build Include="StoredProcedure\Commande\SP_Commande_Delete.sql" />
+    <Build Include="StoredProcedure\Commande\SP_Commande_GetAll.sql" />
+    <Build Include="StoredProcedure\Commande\SP_Commande_GetBy.sql" />
+    <Build Include="StoredProcedure\Commande\SP_Commande_Insert.sql" />
+    <Build Include="StoredProcedure\Commande\SP_Commande_Update.sql" />
+    <Build Include="StoredProcedure\Categorie\SP_Categorie_Delete.sql" />
+    <Build Include="StoredProcedure\Categorie\SP_Categorie_GetAll.sql" />
+    <Build Include="StoredProcedure\Categorie\SP_Categorie_GetBy.sql" />
+    <Build Include="StoredProcedure\Categorie\SP_Categorie_Insert.sql" />
+    <Build Include="StoredProcedure\Categorie\SP_Categorie_Update.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DB_Epreuve.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment1.sql" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Epreuve_Asp.Models.Categorie.CategorieListItemViewModel>
+
+@* @{
+    ViewData["Title"] = "Index";
+}
+ *@
+<h1>Catégorie</h1>
+
+<p>
+    <a asp-action="Create">Ajouter une nouvelle catégorie</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @* @Html.DisplayNameFor(model => model.NomCategorie) *@
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomCategorie)
+            </td>
+            <td>
+                @Html.ActionLink("Liste des produits", "Index", "Produit", new {categorie = item.NomCategorie}, null ) |
+                @Html.ActionLink("Edit", "Edit", new { id=item.NomCategorie }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.NomCategorie })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
