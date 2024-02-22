@@ -90,6 +90,26 @@ namespace DAL_Epreuve.Services
             }
         }
 
+        public IEnumerable<Produit> GetRandomProduit(int count)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = $"SELECT TOP {count} * FROM Produit ORDER BY NEWID()";
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            yield return reader.ToProduit();
+                        }
+                    }
+                }
+            }
+        }
+
         public int Insert(Produit data)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))

@@ -39,6 +39,11 @@ namespace BLL_Epreuve.Services
             return bllProduit;
         }
 
+        public IEnumerable<Produit> GetRandomProduit(int count)
+        {
+            return _repository.GetRandomProduit(count).Select(d => d.ToBLL());    
+        }
+
         public int Insert(Produit entity)
         {
             return _repository.Insert(entity.ToDAL());

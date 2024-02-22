@@ -8,5 +8,6 @@ namespace Shared.Repositories
     public interface IProduitRepository<TEntity> : ICrudRepository<TEntity, int> where TEntity: class
     {
         IEnumerable<TEntity> GetByCategorie(string categorie);
+        IEnumerable<TEntity> GetRandomProduit(int count);
     }
 }

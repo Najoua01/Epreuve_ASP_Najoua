@@ -1,8 +1,36 @@
-﻿@{
+﻿@model IEnumerable<BLL_Epreuve.Entities.Produit>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"]</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/Epreuve_Asp.styles.css" asp-append-version="true" />
+    </head>
+    <body>
+        <div class="text-center">
+            <h1 class="display-4">Welcome</h1>
+        </div>
+       <br />
+        <div class="produitListe">
+            @foreach (var produit in Model)
+            {
+                <div class="produit">
+                    <div class="image">
+                        <img />
+                        <p>image</p>
+                    </div>
+                    <h3 class="titre">@produit.Nom</h3>
+                    <hr />
+                    <h3 class="description">@produit.Description</h3>
+                    <h3 class="prix">@produit.Prix €</h3>
+                </div>
+            }
+        </div>
+    </body>
+</html>

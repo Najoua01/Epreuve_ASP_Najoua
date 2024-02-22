@@ -1,5 +1,8 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+    text-decoration:none;
 }
 
 @media (min-width: 768px) {
@@ -8,11 +11,43 @@ html {
   }
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
   margin-bottom: 60px;
+  width:90%;
+  display:flex;
+  justify-content:center;
+  flex-direction:column;
+}
+.produitListe {
+    display:flex;
+    justify-content:space-around;
+}
+.produit {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    width: 300px;
+    margin:0 5px;
+}
+.image {
+   width:100%;
+}
+.titre {
+    font-size:xx-large;
+    margin-top: 0;
+}
+
+.description {
+    color: #666;
+    margin: 10px 0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient:vertical;
+}
+
+.prix {
+    font-weight: bold;
+    color: #007BFF;
 }

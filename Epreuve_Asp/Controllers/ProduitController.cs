@@ -40,6 +40,13 @@ namespace Epreuve_Asp.Controllers
             return View(model);
         }
 
+        //Ajout d'une methode produit random
+        public ActionResult ProduitRandom()
+        { 
+            IEnumerable<Produit> produitRandom = _produitRepository.GetRandomProduit(3);
+            return View(produitRandom);
+        }
+
         // GET: ProduitController/Details/5
         public ActionResult Details(int id)
         {
