@@ -15,6 +15,7 @@ namespace Epreuve_Asp.Models.Produit
         public string? Description { get; set; }
 
         [DisplayName("Prix")]
+        [DataType(DataType.Currency)]
         [Required(ErrorMessage = "Le prix de la catégorie est obligatoire.")]
         [MinLength(2, ErrorMessage = "Le prix doit avoir au minimum 1 chiffre.")]
         public decimal Prix { get; set; }

@@ -9,7 +9,7 @@ html {
   html {
     font-size: 16px;
   }
-}
+} 
 
 body {
   margin-bottom: 60px;
@@ -20,17 +20,23 @@ body {
 }
 .produitListe {
     display:flex;
-    justify-content:space-around;
+    flex-direction:column;
 }
 .produit {
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 15px;
-    width: 300px;
-    margin:0 5px;
+    width: 90%;
+    margin:10px 0;
+    display:flex;
+    flex-direction:row;
 }
 .image {
-   width:100%;
+   width:20%;
+}
+.info {
+    display:flex;
+    flex-direction:column;
 }
 .titre {
     font-size:xx-large;
@@ -41,10 +47,6 @@ body {
     color: #666;
     margin: 10px 0;
     overflow:hidden;
-    text-overflow:ellipsis;
-    display:-webkit-box;
-    -webkit-line-clamp:3;
-    -webkit-box-orient:vertical;
 }
 
 .prix {

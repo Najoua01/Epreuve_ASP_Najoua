@@ -3,8 +3,22 @@ using DAL = DAL_Epreuve;
 using BLL = BLL_Epreuve;
 
 var builder = WebApplication.CreateBuilder(args);
-string connectionString = builder.Configuration.GetConnectionString("DB-Epreuve");
 
+// Localisation
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    string[] supportedCultures = new string[]
+    {
+        "en-US",
+        "fr_BE"
+    };
+    string defaultCulture = supportedCultures[1];
+    options.SetDefaultCulture(defaultCulture);
+    options.AddSupportedCultures(supportedCultures);
+    options.AddSupportedUICultures(supportedCultures); 
+});
+
+string connectionString = builder.Configuration.GetConnectionString("DB-Epreuve");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -28,6 +42,9 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 
 app.UseRouting();
+
+// Localisation
+app.UseRequestLocalization();
 
 app.UseAuthorization();
 

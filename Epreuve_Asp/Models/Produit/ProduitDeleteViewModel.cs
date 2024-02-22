@@ -18,6 +18,7 @@ namespace Epreuve_Asp.Models.Produit
         public string? Description { get; set; }
 
         [DisplayName("Prix")]
+        [DataType(DataType.Currency)]
         [Required]
         public decimal Prix { get; set; }
 
