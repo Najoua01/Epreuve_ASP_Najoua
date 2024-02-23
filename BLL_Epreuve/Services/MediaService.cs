@@ -4,6 +4,8 @@ using Shared.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
+using BLL_Epreuve.Mappers;
 
 namespace BLL_Epreuve.Services
 {
@@ -22,7 +24,7 @@ namespace BLL_Epreuve.Services
 
         public IEnumerable<Media> Get()
         {
-            throw new NotImplementedException();
+            return _mediaRepository.Get().Select(d => d.ToBLL());
         }
 
         public Media Get(int id)
