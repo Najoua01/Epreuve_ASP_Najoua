@@ -53,5 +53,30 @@ namespace BLL_Epreuve.Mappers
             };
         }
         #endregion
+
+        #region Produit
+        public static BLL.Media ToBLL(this DAL.Media entity)
+        {
+            if (entity is null) return null;
+            return new BLL.Media(
+                entity.Id_Media,
+                entity.Nom,
+                entity.Url,
+                entity.Id_produit,
+                null);
+        }
+
+        public static DAL.Media ToDAL(this BLL.Media entity)
+        {
+            if (entity is null) return null;
+            return new DAL.Media()
+            {
+                Id_Media = entity.Id_Media,
+                Nom = entity.Nom,
+                Url = entity.Url,
+                Id_produit = entity.Id_produit
+            };
+        }
+        #endregion
     }
 }

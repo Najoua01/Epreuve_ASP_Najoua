@@ -29,5 +29,17 @@ namespace DAL_Epreuve.Mappers
                 NomCategorie = (string)record["NomCategorie"]
             };
         }
+        public static Media ToMedia(this IDataRecord record)
+        {
+            if (record is null) return null;
+            return new Media()
+            {
+                Id_Media = (int)record["Id_Media"],
+                Nom = (string)record["Nom"],
+                Url = record["Url"].ToString(),
+                Id_produit = (record["Id_Produit"] == DBNull.Value) ? null : (int?)record["Id_Produit"]
+               
+            };
+        }
     }
 }
