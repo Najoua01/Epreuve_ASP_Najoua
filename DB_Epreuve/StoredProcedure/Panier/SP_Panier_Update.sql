@@ -6,8 +6,7 @@
 	@sessionPanier INT
 AS
 	UPDATE [Panier] 
-		SET [Id_Panier] = @id_Panier,
-			[Quantite] = @quantite,
+		SET [Quantite] = @quantite,
 			[Prix] = @Prix,
 			[Id_Produit] = @id_Produit,
 			[SessionPanier]= @sessionPanier

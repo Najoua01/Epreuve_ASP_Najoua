@@ -11,7 +11,7 @@ using System.Text;
 namespace DAL_Epreuve.Services
 {
     public class CategorieService : BaseService, ICategorieRepository<Categorie>
-    {
+    { 
         public CategorieService(IConfiguration configuration) : base(configuration, "DB-Epreuve")
         {
         }
@@ -35,14 +35,15 @@ namespace DAL_Epreuve.Services
                 }
             }
         }
-        public Categorie Get(int id)
+        public Categorie Get(string id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "SP_Categorie_GetById";
+                    command.CommandText = "SP_Categorie_GetBy";
                     command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("NomCategorie", id);
                      connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -52,7 +53,7 @@ namespace DAL_Epreuve.Services
                 }
             }
         }
-        public int Insert(Categorie data)
+        public string Insert(Categorie data)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -60,8 +61,9 @@ namespace DAL_Epreuve.Services
                 {
                     command.CommandText = "SP_Categorie_Insert";
                     command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("NomCategorie", data.NomCategorie);
                     connection.Open();
-                    return (int)command.ExecuteScalar();
+                    return (string)command.ExecuteScalar();
                 }
             }
         }
@@ -74,13 +76,14 @@ namespace DAL_Epreuve.Services
                 {
                     command.CommandText = "SP_Categorie_Update";
                     command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("NomCategorie", data.NomCategorie);
                     connection.Open();
                     if (command.ExecuteNonQuery() <= 0)
                         throw new ArgumentException(nameof(data.NomCategorie), $"L'identifiant {data.NomCategorie} n'existe pas dans la base de données.");
                 }
             }
         }
-        public void Delete(int id)
+        public void Delete(string id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -88,6 +91,7 @@ namespace DAL_Epreuve.Services
                 {
                     command.CommandText = "SP_Categorie_Delete";
                     command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("NomCategorie",id);
                     connection.Open();
                     if (command.ExecuteNonQuery() <= 0)
                         throw new ArgumentException(nameof(id), $"L'identifiant {id} n'est pas das la base de données");
@@ -96,3 +100,4 @@ namespace DAL_Epreuve.Services
         }
     }
 }
+ 

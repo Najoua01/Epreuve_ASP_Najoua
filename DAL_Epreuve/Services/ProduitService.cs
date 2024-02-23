@@ -24,6 +24,7 @@ namespace DAL_Epreuve.Services
                 {
                     command.CommandText = "SP_Produit_Delete";
                     command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("Id_Produit", id);
                     connection.Open();
                     if (command.ExecuteNonQuery() <= 0)
                         throw new ArgumentException(nameof(id), $"L'identifiant {id} n'est pas das la base de données");
@@ -57,8 +58,9 @@ namespace DAL_Epreuve.Services
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "SP_Produit_GetById";
+                    command.CommandText = "SP_Produit_GetBy";
                     command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("Id_Produit",id);
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -118,6 +120,11 @@ namespace DAL_Epreuve.Services
                 {
                     command.CommandText = "SP_Produit_Insert";
                     command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("Nom", data.Nom);
+                    command.Parameters.AddWithValue("Description", data.Description);
+                    command.Parameters.AddWithValue("Prix", data.Prix);
+                    command.Parameters.AddWithValue("EcoScore", data.EcoScore);
+                    command.Parameters.AddWithValue("NomCategorie", data.NomCategorie);
                     connection.Open();
                     return (int)command.ExecuteScalar();
                 }
@@ -132,6 +139,13 @@ namespace DAL_Epreuve.Services
                 {
                     command.CommandText = "SP_Produit_Update";
                     command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("Id_Produit", data.Id_Produit);
+                    command.Parameters.AddWithValue("Nom", data.Nom);
+                    command.Parameters.AddWithValue("Description", data.Description);
+                    command.Parameters.AddWithValue("Prix", data.Prix);
+                    command.Parameters.AddWithValue("EcoScore", data.EcoScore);
+                    command.Parameters.AddWithValue("NomCategorie", data.NomCategorie);
+
                     connection.Open();
                     if (command.ExecuteNonQuery() <= 0)
                         throw new ArgumentException(nameof(data.Id_Produit), $"L'identifiant {data.Id_Produit} n'existe pas dans la base de données.");

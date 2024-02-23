@@ -5,7 +5,6 @@
 
 AS
 	UPDATE [Commande] 
-		SET [Id_Commande] = @id_Commande,
-			[DateCommande] = @dateCommande,
+		SET [DateCommande] = @dateCommande,
 			[SessionPanier] = @sessionPanier
 		WHERE [Id_Commande] = @id_Commande

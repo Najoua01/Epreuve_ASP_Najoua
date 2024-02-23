@@ -63,6 +63,7 @@
     <Folder Include="StoredProcedure\Media" />
     <Folder Include="StoredProcedure\Panier" />
     <Folder Include="StoredProcedure\Produit" />
+    <Folder Include="DB_Sauvegarde" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Table\Categorie.sql" />

@@ -23,22 +23,16 @@ namespace Epreuve_Asp.Handlers
                 NomCategorie = entity.NomCategorie
             };
         }
-        public static CategorieEditViewModel Edit(this Categorie entity)
+        
+        public static Categorie ToBLL(this CategorieCreateViewModel entity)
         {
             if (entity is null) return null;
-            return new CategorieEditViewModel()
-            {
-                NomCategorie = entity.NomCategorie
-            };
+            return new Categorie(
+                entity.NomCategorie
+            );
         }
-        //public static Categorie ToBLL(this CategorieCreateViewModel entity)
-        //{
-        //    if (entity is null) return null;
-        //    return new CategorieCreateViewModel(
-        //        entity.NomCategorie
-        //    );
-        //}
 
+        
         #endregion
 
         #region Produit
@@ -73,6 +67,7 @@ namespace Epreuve_Asp.Handlers
             if (entity is null) return null;
             return new ProduitEditViewModel()
             {
+                Id_Produit = entity.Id_Produit,
                 Nom = entity.Nom,
                 Description = entity.Description,
                 Prix = entity.Prix,
@@ -85,13 +80,33 @@ namespace Epreuve_Asp.Handlers
             if (entity is null) return null;
             return new ProduitDeleteViewModel()
             {
-                Id_Produit = entity.Id_Produit,
-                Nom = entity.Nom,
-                Description = entity.Description,
-                Prix = entity.Prix,
-                EcoScore = entity.EcoScore,
-                NomCategorie = entity.NomCategorie
-            };
+                Nom = entity.Nom};
+        }
+
+        public static Produit ToBLL(this ProduitCreateViewModel entity)
+        {
+            if (entity is null) return null;
+            return new Produit(
+                0,
+                entity.Nom,
+                entity.Description,
+                entity.Prix,
+                entity.EcoScore,
+                entity.NomCategorie
+            );
+        }
+
+        public static Produit EditToBll(this ProduitEditViewModel entity)
+        {
+            if (entity is null) return null;
+            return new Produit(
+                entity.Id_Produit,
+                entity.Nom,
+                entity.Description,
+                entity.Prix,
+                entity.EcoScore,
+                entity.NomCategorie
+            );
         }
         #endregion
 

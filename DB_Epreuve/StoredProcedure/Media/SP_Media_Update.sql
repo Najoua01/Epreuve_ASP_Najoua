@@ -2,7 +2,7 @@
 	@id_Media INT,
 	@nom NVARCHAR(64),
 	@url NVARCHAR(256),
-	@id_Produit INT
+	@id_Produit INT = NULL
 AS
 	UPDATE [Media]
 		SET [Nom] = @nom,

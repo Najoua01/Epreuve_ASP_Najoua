@@ -1,10 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Epreuve_Asp.Models.Produit
 {
     public class ProduitEditViewModel
     {
+        [HiddenInput]
+        public int Id_Produit { get; set; }
+
         [DisplayName("Nom du produit")]
         [Required]
         public string Nom { get; set; }
@@ -18,7 +22,6 @@ namespace Epreuve_Asp.Models.Produit
         public decimal Prix { get; set; }
 
         [DisplayName("Eco score")]
-        [Required]
         public char EcoScore { get; set; }
 
         [ScaffoldColumn(false)]

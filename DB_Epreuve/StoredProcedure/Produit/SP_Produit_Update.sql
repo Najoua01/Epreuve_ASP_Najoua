@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Produit_Update]
 	@id_Produit INT,
 	@nom NVARCHAR(64),
-	@description NVARCHAR(256),
+	@description NVARCHAR(MAX),
 	@prix INT,
 	@ecoScore NCHAR(1),
 	@NomCategorie NVARCHAR(64)

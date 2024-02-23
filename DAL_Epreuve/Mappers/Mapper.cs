@@ -23,7 +23,7 @@ namespace DAL_Epreuve.Mappers
             {
                 Id_Produit = (int)record["Id_Produit"],
                 Nom = (string)record["Nom"],
-                Description = (string)record["Description"],
+                Description = (record["Description"] == DBNull.Value) ? null : (string?)record["Description"],
                 Prix = (decimal)record["Prix"],
                 EcoScore = record["EcoScore"].ToString()[0],
                 NomCategorie = (string)record["NomCategorie"]

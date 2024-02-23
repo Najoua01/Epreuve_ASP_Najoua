@@ -17,12 +17,10 @@ namespace Epreuve_Asp.Models.Produit
         [DisplayName("Prix")]
         [DataType(DataType.Currency)]
         [Required(ErrorMessage = "Le prix de la catégorie est obligatoire.")]
-        [MinLength(2, ErrorMessage = "Le prix doit avoir au minimum 1 chiffre.")]
+        [Range(0, double.MaxValue, ErrorMessage = "Le prix doit être supérieur ou égal à 0.")]
         public decimal Prix { get; set; }
 
         [DisplayName("Eco score")]
-        [Required(ErrorMessage = "L'eco score de la catégorie est obligatoire.")]
-        [StringLength(1, MinimumLength = 1, ErrorMessage = "L'eco score doit avoir 1 caractère.")]
         public char EcoScore { get; set; }
 
         [Display(Name = "Nom de la catégorie")]

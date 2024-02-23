@@ -16,7 +16,7 @@ namespace BLL_Epreuve.Services
         { 
             _repository = repository;
         }
-        public void Delete(int id)
+        public void Delete(string id)
         {
             _repository.Delete(id);
         }
@@ -26,12 +26,12 @@ namespace BLL_Epreuve.Services
             return _repository.Get().Select(d => d.ToBLL());
         }
 
-        public Categorie Get(int id)
+        public Categorie Get(string id)
         {
             return _repository.Get(id).ToBLL();
         }
 
-        public int Insert(Categorie entity)
+        public string Insert(Categorie entity)
         {
             return _repository.Insert(entity.ToDAL());
         }

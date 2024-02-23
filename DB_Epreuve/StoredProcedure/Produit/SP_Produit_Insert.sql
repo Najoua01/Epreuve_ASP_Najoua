@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Produit_Insert]
 		@nom NVARCHAR(64),
-		@description NVARCHAR(256),
+		@description NVARCHAR(MAX),
 		@prix INT,
 		@ecoScore NCHAR(1),
 		@NomCategorie NVARCHAR(64)

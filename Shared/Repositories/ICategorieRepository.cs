@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Shared.Repositories
 {
-    public interface ICategorieRepository<TEntity> : ICrudRepository<TEntity, int> where TEntity : class
+    public interface ICategorieRepository<TEntity> : ICrudRepository<TEntity, string> where TEntity : class
     {
     }
 }

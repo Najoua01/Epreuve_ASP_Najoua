@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Repositories;
 
-namespace Epreuve_Asp.Controllers
+namespace Epreuve_Asp.Controllers 
 {
     public class CategorieController : Controller
     {
@@ -23,7 +23,7 @@ namespace Epreuve_Asp.Controllers
         }
 
         // GET: CategorieController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
             return View();
         }
@@ -38,9 +38,12 @@ namespace Epreuve_Asp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CategorieCreateViewModel form)
-        {
+            {
             try
             {
+                if (form is null) ModelState.AddModelError(nameof(form), "Pas de données reçues.");
+                if (!ModelState.IsValid) throw new Exception();
+                string id = _categorieRepository.Insert(form.ToBLL());
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -50,7 +53,7 @@ namespace Epreuve_Asp.Controllers
         }
 
         // GET: CategorieController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
             return View();
         }
@@ -58,10 +61,11 @@ namespace Epreuve_Asp.Controllers
         // POST: CategorieController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(string id, IFormCollection collection)
         {
             try
             {
+                
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -71,23 +75,34 @@ namespace Epreuve_Asp.Controllers
         }
 
         // GET: CategorieController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            try
+            {
+                CategorieDeleteViewModel model = _categorieRepository.Get(id).Delete();
+                if (model is null) throw new InvalidCastException();
+                return View(model);
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = $"L'identifiant {id} est invalide";
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         // POST: CategorieController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(string id, CategorieDeleteViewModel model)
         {
             try
             {
+                _categorieRepository.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(model);
             }
         }
     }

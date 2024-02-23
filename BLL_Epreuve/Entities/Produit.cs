@@ -20,7 +20,7 @@ namespace BLL_Epreuve.Entities
             Description = description;
             Prix = prix;
             EcoScore = ecoScore;
-            NomCategorie = NomCategorie;
+            this.NomCategorie = NomCategorie;
         }
 
     }

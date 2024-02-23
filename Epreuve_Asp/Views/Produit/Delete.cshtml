@@ -1,11 +1,12 @@
 ﻿@model Epreuve_Asp.Models.Produit.ProduitDeleteViewModel
 
-@* @{
+@{
     ViewData["Title"] = "Delete";
-} *@
+}
 
-<h3>Etes-vous sûr de supprimer le produit?</h3>
+<h3>Etes-vous sûr de vouloir supprimer ce produit?</h3>
 <div>
+    <h4>ProduitDeleteViewModel</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -14,34 +15,10 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Nom)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Prix)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Prix)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EcoScore)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EcoScore)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NomCategorie)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NomCategorie)
-        </dd>
     </dl>
     
     <form asp-action="Delete">
         <input type="submit" value="Supprimer" class="btn btn-danger" /> |
-        <a asp-action="Index">Retour à la liste</a>
+        <a asp-action="Index">retour à la liste</a>
     </form>
 </div>

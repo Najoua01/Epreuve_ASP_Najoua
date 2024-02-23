@@ -22,7 +22,6 @@ namespace Epreuve_Asp.Models.Produit
         public decimal Prix { get; set; }
 
         [DisplayName("Eco score")]
-        [Required]
         public char EcoScore { get; set; }
 
         [DisplayName("Nom de la catégorie")]

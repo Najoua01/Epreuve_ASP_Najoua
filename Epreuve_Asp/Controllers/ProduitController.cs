@@ -5,6 +5,7 @@ using Epreuve_Asp.Models.Produit;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Repositories;
+using System.Reflection;
 
 namespace Epreuve_Asp.Controllers
 {
@@ -59,15 +60,18 @@ namespace Epreuve_Asp.Controllers
         {
             return View();
         }
-
-        // POST: ProduitController/Create
+         
+        // POST: ProduitController/Create 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(ProduitCreateViewModel form)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (form is null) ModelState.AddModelError(nameof(form), "Pas de données reçues.");
+                if (!ModelState.IsValid) throw new Exception();
+                int id = _produitRepository.Insert(form.ToBLL());
+                return RedirectToAction(nameof(Details), new { id });
             }
             catch
             {
@@ -78,42 +82,59 @@ namespace Epreuve_Asp.Controllers
         // GET: ProduitController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ProduitEditViewModel model = _produitRepository.Get(id).Edit();
+            if (model is null) throw new ArgumentOutOfRangeException(nameof(id));
+            return View(model);
         }
 
         // POST: ProduitController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, ProduitEditViewModel form)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (form is null) ModelState.AddModelError(nameof(form), "Pas de donées reçues");
+                if (!ModelState.IsValid) throw new Exception();
+                form.Id_Produit = id;
+                _produitRepository.Update(form.EditToBll());
+                return RedirectToAction(nameof(Index), new { id });
             }
             catch
             {
-                return View();
+                return View(form);
             }
         }
 
         // GET: ProduitController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                ProduitDeleteViewModel model = _produitRepository.Get(id).Delete();
+                if (model is null) throw new InvalidCastException();
+                return View(model);
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = $"L'identifiant {id} est invalide";
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         // POST: ProduitController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, ProduitDeleteViewModel model)
         {
             try
             {
+                _produitRepository.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(model);
             }
         }
     }
